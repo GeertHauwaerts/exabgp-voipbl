@@ -1,0 +1,86 @@
+;;
+; voipbl.org blacklist settings
+;
+;    remote:       The URL to the voipbl.org blacklist.
+;    database:     The filename of the locally cached blacklist.
+;    frequency:    The interval, expressed in seconds, to check the voipbl.org
+;                  blacklist for new or obsolete entries.
+;;
+
+[voipbl]
+
+remote    = "http://www.voipbl.org/update"
+database  = "voipbl.db"
+frequency = 3600
+
+
+;;
+; Local blacklist settings
+;
+;    database:     The filename of the local blacklist.
+;    frequency:    The interval, expressed in seconds, to check the local
+;                  blacklist for new or obsolete entries.
+;;
+
+[localbl]
+
+database  = "localbl.db"
+frequency = 5
+
+
+;;
+; ExaBGP settings 
+;
+;    method:       The method to advertise:
+;
+;                      unicast:    The regular BGP format which advertises the
+;                                  routes tagged with blackhole communities.
+;
+;                                  All traffic sent to the blacklisted prefixes
+;                                  will be discarded; this will not prevent your
+;                                  network from receiving packets from the evil
+;                                  that lies beyond the gates of Mordor, but it
+;                                  will discard the return packets.
+;
+;                      flowspec:   The advanced BGP format which advertises the
+;                                  routes tagged with blackhole communities and
+;                                  a specific set of FlowSpec instructions.
+;
+;                                  By using FlowSpec, you are able to discard
+;                                  traffic based on advanced criteria such as
+;                                  source, destination, port, protocol,
+;                                  packet-size, tcp-flags and other parameters.
+;
+;                                  The default configuration will discard all
+;                                  UDP packets towards port 5060 coming from the
+;                                  blacklisted prefixes.
+;
+;    uc_next_hop:  The next-hop of the advertised routes when using the unicast
+;                  method.
+;
+;    fs_dst_port:  The ports, separated by space, and the status that they
+;                  must match; you can use "=", "<", ">" or "&".
+;
+;                  For example:
+;
+;                      "=5060"
+;                      "=80 =443"
+;                      ">8080&<8088 =3128"
+;                      ""
+;
+;                  If the setting is empty, all ports will be matched.
+;
+;    fs_protocol:  The protocol, separated by space, to match; you can use
+;                  "tcp", "udp" or "any".
+;
+;    communities:  The BGP communities, separated by space, to include in the
+;                  advertised routes.
+;;
+
+[exabgp]
+
+method      = "flowspec"
+uc_next_hop = "172.16.0.1"
+fs_dst_port = "=5060"
+fs_protocol = "udp"
+communities = "65000:666"

@@ -1,0 +1,12 @@
+##
+# localbl blacklist
+#
+#    Add the IP/CIDR addresses you want to manually inject into ExaBPG in this
+#    file. If you want to add a single IP address, use /32 as the CIDR.
+#
+#    For example:
+#
+#        93.184.216.119/32
+#        148.20.57.16/29
+#        69.208.0.0/24
+##
