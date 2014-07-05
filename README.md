@@ -45,7 +45,7 @@ If you have a patch to contribute:
   * Commit your changes to Git and push them to GitHub.
   * Submit a pull request.
 
-Shout to [https://twitter.com/GeertHauwaerts](@GeertHauwaerts) on Twitter at
+Shout to [@GeertHauwaerts](https://twitter.com/GeertHauwaerts) on Twitter at
 any time :)
 
 To contact me on IRC, you can poke me on:
