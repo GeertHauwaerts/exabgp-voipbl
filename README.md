@@ -36,7 +36,7 @@ The installation is very easy and straightforward:
 ## Collaboration
 
 The GitHub repository is used to keep track of all the bugs and feature
-requests; I prefer to work uniquely via GitHib and IRC.
+requests; I prefer to work uniquely via GitHib, IRC and Twitter.
 
 If you have a patch to contribute:
 
@@ -44,6 +44,9 @@ If you have a patch to contribute:
   * Create a feature branch for your set of patches.
   * Commit your changes to Git and push them to GitHub.
   * Submit a pull request.
+
+Shout to [https://twitter.com/GeertHauwaerts](@GeertHauwaerts) on Twitter at
+any time :)
 
 To contact me on IRC, you can poke me on:
 
@@ -55,5 +58,4 @@ To contact me on IRC, you can poke me on:
 | IRCnet   | Geert    | [geert@staff.irc6.net](geert@staff.irc6.net)       |
 | OFTC     | Geert    | [geert@geert.irssi.be](geert@geert.irssi.be)       |
 
-PS: Don't paste any confidential data on IRC without validating the hostname
-first!
+Don't paste any confidential data on IRC without validating the hostname first!
