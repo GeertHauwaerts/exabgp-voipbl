@@ -552,16 +552,17 @@ class exabgp_voipbl {
 		 */
 		
 		if (!preg_match("#^[0-9\.]+/\d+$#", $ipcidr)) {
-			
-			
 			/*
 			 * The given IP/CIDR does not match the required syntax.
 			 */
-			
-			return FALSE;
+			$ipcidr = $ipcidr . "/32";
+			if (!preg_match("#^[0-9\.]+/\d+$#", $ipcidr)) {
+				return FALSE;
+			} else {
+				$ip   = @explode("/", $ipcidr, 2)[0];
+				$cidr = @explode("/", $ipcidr, 2)[1];
+			}
 		} else {
-			
-			
 			/*
 			 * Retrieve the IP and CIDR parameters from the IP/CIDR.
 			 */
