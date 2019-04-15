@@ -1,10 +1,12 @@
 ;;
 ; voipbl.org blacklist settings
 ;
-;    remote:       The URL to the voipbl.org blacklist.
-;    database:     The filename of the locally cached blacklist.
-;    frequency:    The interval, expressed in seconds, to check the voipbl.org
-;                  blacklist for new or obsolete entries.
+;    remote:           The URL to the voipbl.org blacklist.
+;    database:         The filename of the locally cached blacklist.
+;    frequency:        The interval, expressed in seconds, to check the voipbl.org
+;                      blacklist for new or obsolete entries.
+;    filter_rfc1918:   Filter RFC1918 addresses out from the blacklist if any are
+;                      received. Set to TRUE or FALSE.
 ;;
 
 [voipbl]
@@ -12,21 +14,23 @@
 remote    = "http://www.voipbl.org/update"
 database  = "voipbl.db"
 frequency = 3600
-
+filter_rfc1918 = TRUE
 
 ;;
 ; Local blacklist settings
 ;
-;    database:     The filename of the local blacklist.
-;    frequency:    The interval, expressed in seconds, to check the local
-;                  blacklist for new or obsolete entries.
+;    database:         The filename of the local blacklist.
+;    frequency:        The interval, expressed in seconds, to check the local
+;                      blacklist for new or obsolete entries.
+;    filter_rfc1918:   Filter RFC1918 addresses out from the blacklist if any are
+;                      received. Set to TRUE or FALSE.
 ;;
 
 [localbl]
 
 database  = "localbl.db"
 frequency = 5
-
+filter_rfc1918 = FALSE
 
 ;;
 ; ExaBGP settings 

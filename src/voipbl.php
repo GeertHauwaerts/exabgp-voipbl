@@ -234,8 +234,8 @@ class exabgp_voipbl {
 		 */
 		
 		$required = [
-			"voipbl"  => ["remote", "database", "frequency"],
-			"localbl" => ["database", "frequency"],
+			"voipbl"  => ["remote", "database", "frequency", "filter_rfc1918"],
+			"localbl" => ["database", "frequency", "filter_rfc1918"],
 			"exabgp"  => ["method", "communities"],
 		];
 		
@@ -244,7 +244,7 @@ class exabgp_voipbl {
 		 * Read the configuration file.
 		 */
 		
-		$this->configuration = @parse_ini_file($configfile, TRUE);
+		$this->configuration = @parse_ini_file($configfile, TRUE, INI_SCANNER_TYPED);
 		
 		
 		/*
@@ -295,7 +295,7 @@ class exabgp_voipbl {
 						 * Check if the setting exists.
 						 */
 						
-						if (empty($this->configuration[$section][$setting]) || !is_string($this->configuration[$section][$setting])) {
+						if (!isset($this->configuration[$section][$setting])) {
 							
 							
 							/*
@@ -355,6 +355,21 @@ class exabgp_voipbl {
 		
 		
 		/*
+		 * Validate the voipbl::filter_rfc1918 setting.
+		 */
+
+		if (!is_bool($this->configuration["voipbl"]["filter_rfc1918"])) {
+
+
+			/*
+			 * Raise a critical error.
+			 */
+
+			$this->error("The setting 'voipbl::filter_rfc1918' is invalid.");
+		}
+
+
+		/*
 		 * Validate the localbl::frequency setting.
 		 */
 		
@@ -365,7 +380,22 @@ class exabgp_voipbl {
 			 * Raise a critical error.
 			 */
 			
-			$this->error("The setting 'voipbl::frequency' is invalid.");
+			$this->error("The setting 'localbl::frequency' is invalid.");
+		}
+
+
+		/*
+		 * Validate the localbl::filter_rfc1918 setting.
+		 */
+
+		if (!is_bool($this->configuration["localbl"]["filter_rfc1918"])) {
+
+
+			/*
+			 * Raise a critical error.
+			 */
+
+			$this->error("The setting 'localbl::filter_rfc1918' is invalid.");
 		}
 		
 		
@@ -536,6 +566,21 @@ class exabgp_voipbl {
 		}
 	}
 	
+	private function is_not_rfc1918_space(&$ipcidr) {
+
+
+		/*
+		 * Check if the given IP address is not in RFC1918 space.
+		 */
+
+		if (preg_match("/(^127\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.168\.)/", $ipcidr)) {
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+
 	
 	/**
 	 * Validates an IP/CIDR address
@@ -791,6 +836,15 @@ class exabgp_voipbl {
 				
 				$this->voipbl["data"] = array_filter($this->voipbl["data"], [$this, "is_valid_cidr"]);
 				
+        /*
+				 * Remove RFC1918 entries from the local voipbl blacklist if required.
+				 */
+
+				if($this->configuration["voipbl"]["filter_rfc1918"]) {
+
+					$this->voipbl["data"] = array_filter($this->voipbl["data"], [$this, "is_not_rfc1918_space"]);
+
+				}
 				
 				/*
 				 * Sort the data from local voipbl blacklist.
@@ -871,6 +925,16 @@ class exabgp_voipbl {
 					
 					$this->localbl["data"] = array_filter($this->localbl["data"], [$this, "is_valid_cidr"]);
 					
+					/*
+					 * Remove RFC1918 entries from the localbl blacklist if required.
+					 */
+
+					if($this->configuration["localbl"]["filter_rfc1918"]) {
+
+						$this->localbl["data"] = array_filter($this->localbl["data"], [$this, "is_not_rfc1918_space"]);
+
+					}
+
 					
 					/*
 					 * Sort the data from localbl blacklist.
