@@ -223,4 +223,20 @@ class ValidatorTest extends TestCase
         $this->assertFalse($validator->isRegularExpression('string'));
         $this->assertFalse($validator->isRegularExpression(true));
     }
+
+    /**
+     * Test the makeCIDR() function.
+     *
+     * @return void
+     */
+    public function testValidatorMakeCIDR()
+    {
+        $validator = new Validator();
+
+        $this->assertEquals($validator->makeCIDR('10.0.0.1'), '10.0.0.1/32');
+        $this->assertEquals($validator->makeCIDR('10.0.0.1/32'), '10.0.0.1/32');
+
+        $this->assertEquals($validator->makeCIDR('string'), 'string');
+        $this->assertEquals($validator->makeCIDR(true), true);
+    }
 }

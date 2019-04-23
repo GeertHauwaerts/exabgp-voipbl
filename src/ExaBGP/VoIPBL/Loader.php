@@ -320,6 +320,8 @@ class Loader
             }
 
             $this->localbl['data'] = array_map('chop', $this->localbl['data']);
+            $this->localbl['data'] = array_map([$this->validator, 'makeCIDR'], $this->localbl['data']);
+
             $this->localbl['data'] = array_filter($this->localbl['data'], [$this->validator, 'isCIDR']);
             $this->localbl['data'] = array_filter($this->localbl['data'], [$this->validator, 'isNotReservedIP']);
 

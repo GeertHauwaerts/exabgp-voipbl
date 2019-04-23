@@ -167,6 +167,22 @@ class Validator
     }
 
     /**
+     * Change an IP into an IP/CIDR.
+     *
+     * @param string $expr An IP address.
+     *
+     * @return bool
+     */
+    public function makeCIDR($ip)
+    {
+        if ($this->isIP($ip)) {
+            return $ip . '/32';
+        }
+
+        return $ip;
+    }
+
+    /**
      * Ensure the given file is readable.
      *
      * @param string $file The file to read.
