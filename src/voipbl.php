@@ -26,5 +26,11 @@ spl_autoload_register(function ($class) {
     }
 });
 
-$exabgp = new Loader(__DIR__);
+$cfg = 'voipbl.conf';
+
+if (isset($argv[1])) {
+    $cfg = $argv[1];
+}
+
+$exabgp = new Loader(__DIR__, $cfg);
 $exabgp->start();
