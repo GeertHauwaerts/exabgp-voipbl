@@ -96,6 +96,39 @@ class ValidatorTest extends TestCase
     }
 
     /**
+     * Test the isReservedIP() function.
+     *
+     * @return void
+     */
+    public function testValidatorIsReservedIP()
+    {
+        $validator = new Validator();
+
+        $this->assertTrue($validator->isReservedIP('0.0.23.0/24'));
+        $this->assertTrue($validator->isReservedIP('242.123.135.161/32'));
+        $this->assertTrue($validator->isReservedIP('255.255.255.0/24'));
+        $this->assertTrue($validator->isReservedIP('255.255.255.255/32'));
+
+        $this->assertTrue($validator->isReservedIP('0.0.23.0'));
+        $this->assertTrue($validator->isReservedIP('242.123.135.161'));
+        $this->assertTrue($validator->isReservedIP('255.255.255.0'));
+        $this->assertTrue($validator->isReservedIP('255.255.255.255'));
+
+        $this->assertFalse($validator->isReservedIP('8.8.8.8'));
+        $this->assertFalse($validator->isReservedIP('8.8.4.4'));
+        $this->assertFalse($validator->isReservedIP('10.0.0.0'));
+        $this->assertFalse($validator->isReservedIP('192.168.1.1'));
+
+        $this->assertFalse($validator->isReservedIP('8.8.8.0/24'));
+        $this->assertFalse($validator->isReservedIP('8.8.4.4/32'));
+        $this->assertFalse($validator->isReservedIP('10.0.0.0/24'));
+        $this->assertFalse($validator->isReservedIP('192.168.1.1/32'));
+
+        $this->assertFalse($validator->isReservedIP('string'));
+        $this->assertFalse($validator->isReservedIP(true));
+    }
+
+    /**
      * Test the isNotPrivateIP() function.
      *
      * @return void
@@ -118,6 +151,39 @@ class ValidatorTest extends TestCase
 
         $this->assertTrue($validator->isNotPrivateIP('string'));
         $this->assertTrue($validator->isNotPrivateIP(true));
+    }
+
+    /**
+     * Test the isNotReservedIP() function.
+     *
+     * @return void
+     */
+    public function testValidatorIsNotReservedIP()
+    {
+        $validator = new Validator();
+
+        $this->assertFalse($validator->isNotReservedIP('0.0.23.0/24'));
+        $this->assertFalse($validator->isNotReservedIP('242.123.135.161/32'));
+        $this->assertFalse($validator->isNotReservedIP('255.255.255.0/24'));
+        $this->assertFalse($validator->isNotReservedIP('255.255.255.255/32'));
+
+        $this->assertFalse($validator->isNotReservedIP('0.0.23.0'));
+        $this->assertFalse($validator->isNotReservedIP('242.123.135.161'));
+        $this->assertFalse($validator->isNotReservedIP('255.255.255.0'));
+        $this->assertFalse($validator->isNotReservedIP('255.255.255.255'));
+
+        $this->assertTrue($validator->isNotReservedIP('8.8.8.8'));
+        $this->assertTrue($validator->isNotReservedIP('8.8.4.4'));
+        $this->assertTrue($validator->isNotReservedIP('10.0.0.0'));
+        $this->assertTrue($validator->isNotReservedIP('192.168.1.1'));
+
+        $this->assertTrue($validator->isNotReservedIP('8.8.8.0/24'));
+        $this->assertTrue($validator->isNotReservedIP('8.8.4.4/32'));
+        $this->assertTrue($validator->isNotReservedIP('10.0.0.0/24'));
+        $this->assertTrue($validator->isNotReservedIP('192.168.1.1/32'));
+
+        $this->assertTrue($validator->isNotReservedIP('string'));
+        $this->assertTrue($validator->isNotReservedIP(true));
     }
 
     /**

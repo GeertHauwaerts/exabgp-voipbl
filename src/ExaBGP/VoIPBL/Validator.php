@@ -97,6 +97,24 @@ class Validator
     }
 
     /**
+     * Validate an RFC1700 IP or IP/CIDR address.
+     *
+     * @param string $ipcidr An IP or IP/CIDR address.
+     *
+     * @return bool
+     */
+    public function isReservedIP($ipcidr)
+    {
+        $pattern = '/(^0\.)|(^22[4-9]\.)|(^23[0-9]\.)|(^24[0-9]\.)|(^25[0-5]\.)/';
+
+        if (preg_match($pattern, $ipcidr)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Validate an RFC1918 IP or IP/CIDR address. (negates)
      *
      * @param string $ipcidr An IP or IP/CIDR address.
@@ -106,6 +124,18 @@ class Validator
     public function isNotPrivateIP($ipcidr)
     {
         return !$this->isPrivateIP($ipcidr);
+    }
+
+    /**
+     * Validate an RFC1700 IP or IP/CIDR address. (negates)
+     *
+     * @param string $ipcidr An IP or IP/CIDR address.
+     *
+     * @return bool
+     */
+    public function isNotReservedIP($ipcidr)
+    {
+        return !$this->isReservedIP($ipcidr);
     }
 
     /**

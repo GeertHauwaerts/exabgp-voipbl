@@ -274,6 +274,7 @@ class Loader
 
         $this->voipbl['data'] = array_map('chop', $this->voipbl['data']);
         $this->voipbl['data'] = array_filter($this->voipbl['data'], [$this->validator, 'isCIDR']);
+        $this->voipbl['data'] = array_filter($this->voipbl['data'], [$this->validator, 'isNotReservedIP']);
 
         if ($this->cfg['voipbl']['filter_rfc1918']) {
             $this->voipbl['data'] = array_filter($this->voipbl['data'], [$this->validator, 'isNotPrivateIP']);
@@ -320,6 +321,7 @@ class Loader
 
             $this->localbl['data'] = array_map('chop', $this->localbl['data']);
             $this->localbl['data'] = array_filter($this->localbl['data'], [$this->validator, 'isCIDR']);
+            $this->localbl['data'] = array_filter($this->localbl['data'], [$this->validator, 'isNotReservedIP']);
 
             if ($this->cfg['localbl']['filter_rfc1918']) {
                 $this->localbl['data'] = array_filter($this->localbl['data'], [$this->validator, 'isNotPrivateIP']);
