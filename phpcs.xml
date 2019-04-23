@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="exabgp-voipbl">
+    <description>ExaBGP VoIP Blacklist PHP_CodeSniffer configuration</description>
+    <!-- Use all of PSR-2 -->
+    <rule ref="PSR2"/>
+</ruleset>

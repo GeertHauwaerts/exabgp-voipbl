@@ -8,7 +8,6 @@
  *
  * PHP version 7.0
  *
- * @category  GeertHauwaerts
  * @package   ExaBGP\VoIPBL
  * @author    Geert Hauwaerts <geert@hauwaerts.be>
  * @copyright 2014 Geert Hauwaerts
@@ -16,15 +15,18 @@
  * @link      https://github.com/GeertHauwaerts/exabgp-voipbl exabgp-voipbl
  */
 
-use ExaBGP\VoIPBL\Loader;
+namespace ExaBGP\VoIPBL\Exception;
 
-spl_autoload_register(function ($class) {
-    $file = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
-
-    if (file_exists($file)) {
-        require $file;
-    }
-});
-
-$exabgp = new Loader(__DIR__);
-$exabgp->start();
+/**
+ * The ExceptionInterface class.
+ *
+ * @package   ExaBGP\VoIPBL\Exception\ExceptionInterface
+ * @author    Geert Hauwaerts <geert@hauwaerts.be>
+ * @copyright 2014 Geert Hauwaerts
+ * @license   BSD 3-Clause License
+ * @version   Release: @package_version@
+ * @link      https://github.com/GeertHauwaerts/exabgp-voipbl exabgp-voipbl
+ */
+interface ExceptionInterface
+{
+}
