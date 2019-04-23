@@ -6,6 +6,8 @@
 #
 # I use a custom hold timer of 5 minutes on both ends to prevent the sessions
 # from going down while pushing the initial blacklist.
+#
+# Note: Example for ExaBGP 3.*
 ##
 
 group exabgp_voipbl {
@@ -17,12 +19,10 @@ group exabgp_voipbl {
 	local-address 172.16.2.3;
 
 	neighbor 172.16.2.1 {
-		description "ICON # EXABGP_VOIPBL - BRU1EBR001";
 		router-id  172.16.2.1;
 	}
 
 	neighbor 172.16.2.2 {
-		description "ICON # EXABGP_VOIPBL - BRU3EBR001";
 		router-id 172.16.2.2;
 	}
 

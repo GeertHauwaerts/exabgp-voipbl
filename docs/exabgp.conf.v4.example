@@ -1,0 +1,51 @@
+##
+# The following example will establish two BGP sessions and advertise the
+# blacklists to them.
+#
+# The voipbl-unicast.conf is the sample configuration with the exabgp::method
+# setting changed from flowspec to unicast.
+#
+# Note: Example for ExaBGP 4.*
+##
+
+process exabgp_voipbl {
+  run /usr/bin/php /path/to/exabgp-voipbl/voipbl.php;
+  encoder json;
+}
+
+process exabgp_voipbl_unicast {
+  run /usr/bin/php /path/to/exabgp-voipbl/voipbl.php voipbl-unicast.conf;
+  encoder json;
+}
+
+neighbor 172.16.2.1 {
+  router-id 172.16.2.3;
+  local-address 172.16.2.3;
+  local-as 65000;
+  peer-as 65000;
+  group-updates false;
+
+  family {
+    ipv4 flow;
+  }
+
+  api {
+    processes [ exabgp_voipbl ];
+  }
+}
+
+neighbor 172.16.2.2 {
+  router-id 172.16.2.3;
+  local-address 172.16.2.3;
+  local-as 65000;
+  peer-as 65000;
+  group-updates false;
+
+  family {
+    ipv4 unicast;
+  }
+
+  api {
+    processes [ exabgp_voipbl_unicast ];
+  }
+}

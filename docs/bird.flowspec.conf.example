@@ -1,0 +1,31 @@
+##
+# The following example will establish a BGP session with the ExaBGP peer and
+# accept all FlowSpec advertisements.
+##
+
+flow4 table flowtab4;
+router id 172.16.2.2;
+
+protocol device {
+}
+
+protocol kernel {
+  metric 64;
+  export all;
+}
+
+log syslog all;
+
+protocol bgp {
+  import none;
+  export none;
+  local as 65000;
+  neighbor 172.16.2.3 as 65000;
+  next hop self;
+  direct;
+
+  flow4 {
+    import all;
+    export none;
+  }
+}

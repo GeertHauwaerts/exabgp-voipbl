@@ -1,0 +1,30 @@
+##
+# The following example will establish a BGP session with the ExaBGP peer and
+# accept all unicast prefix advertisements.
+#
+##
+
+router id 172.16.2.2;
+
+protocol device {
+}
+
+protocol static {
+  route 172.16.0.1/32 reject;
+}
+
+protocol kernel {
+  metric 64;
+  export all;
+}
+
+log syslog all;
+
+protocol bgp {
+  import all;
+  export none;
+  local as 65000;
+  neighbor 172.16.2.3 as 65000;
+  next hop self;
+  direct;
+}

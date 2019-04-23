@@ -8,7 +8,6 @@
 
 set protocols bgp group iBGP type internal
 set protocols bgp group iBGP local-address 172.16.2.1
-set protocols bgp group iBGP export next-hop-self
 
 set protocols bgp group iBGP neighbor 172.16.2.3 hold-time 300
 set protocols bgp group iBGP neighbor 172.16.2.3 passive
@@ -19,5 +18,6 @@ set protocols bgp group iBGP neighbor 172.16.2.3 peer-as 65000
 set policy-options policy-statement BLACKHOLE-IMPORT term accept-blackhole from community BLACKHOLE
 set policy-options policy-statement BLACKHOLE-IMPORT term accept-blackhole then accept
 set policy-options policy-statement BLACKHOLE-IMPORT term default then reject
+set policy-options policy-statement NO-EXPORT then reject
 
 set policy-options community BLACKHOLE members 65000:666
