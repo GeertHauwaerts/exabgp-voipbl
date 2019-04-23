@@ -1,7 +1,6 @@
 ##
 # The following example will establish a BGP session with the ExaBGP peer and
 # accept all unicast prefix advertisements.
-#
 ##
 
 router id 172.16.2.2;
