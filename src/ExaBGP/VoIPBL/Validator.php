@@ -169,7 +169,7 @@ class Validator
     /**
      * Change an IP into an IP/CIDR.
      *
-     * @param string $expr An IP address.
+     * @param string $ip An IP address.
      *
      * @return bool
      */

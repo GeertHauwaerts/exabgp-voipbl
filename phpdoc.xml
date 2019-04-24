@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>ExaBGP\VoIPBL Library Documentation</title>
+    <parser>
+        <target>docs/php/build</target>
+    </parser>
+    <transformer>
+        <target>docs/php</target>
+    </transformer>
+    <transformations>
+        <template name="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public" />
+    </transformations>
+    <files>
+        <directory>src/ExaBGP</directory>
+        <ignore>Exception/*</ignore>
+    </files>
+</phpdoc>

@@ -1,7 +1,7 @@
 composer.lock
-phpunit.xml
 .phpunit.result.cache
-vendor/
 src/voipbl.conf
 src/localbl.db
 src/voipbl.db
+docs/php/build/
+vendor/

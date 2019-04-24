@@ -25,7 +25,8 @@ when to use API acknowledgements.
 
 ## Library Usage
 
-Instead of using the `voipbl.php` file, you can use the `ExaBGP\VoIPBL` classes independently.
+Instead of using the `voipbl.php` file, you can use the `ExaBGP\VoIPBL` classes independently. Check the
+[ExaBGP\VoIPBL library documentation](docs/php/README.md) for the list of functions and their arguments.
 
 ```php
 use ExaBGP\VoIPBL\Loader;
@@ -57,12 +58,13 @@ $version = $controller->sendCommand('version', true);
 
 ## Development & Testing
 
-To verify the integrity of the codebase you can run the PHP linter and unit tests:
+To verify the integrity of the codebase you can run the PHP linter, unit tests, and update the library documentation:
 
 ```
 $ composer install
-$ ./vendor/bin/phpunit
-$ ./vendor/bin/phpcs --standard=phpcs.xml --extensions=php src/ tests/
+$ composer phpunit
+$ composer phpcs
+$ composer phpdoc
 ```
 
 ## Collaboration
