@@ -60,11 +60,25 @@ $version = $controller->sendCommand('version', true);
 
 To verify the integrity of the codebase you can run the PHP linter, unit tests, and update the library documentation:
 
-```
+```console
 $ composer install
 $ composer phpunit
 $ composer phpcs
 $ composer phpdoc
+```
+
+If a TTY is present, the application performs a dry-run mode, exiting after a single run. Without a TTY,
+the application intercepts `ctrl+c` (interrupt signal) and runs continiously.
+
+```console
+$ php voipbl.php
+```
+
+This works fine to test a single run, but does not allow you to do any `STDOUT` manipulation. If you want to perform a dry-run with `STDOUT` support, use `unbuffer` to assign a pseudo TTY.
+
+```console
+$ unbuffer php voipbl.php >> output.txt
+$ unbuffer php voipbl.php | wc -l
 ```
 
 ## Collaboration
