@@ -222,7 +222,7 @@ class Loader
         if ($voipbl || $localbl) {
             $this->aggrbl = array_merge($this->voipbl['data'], $this->localbl['data']);
 
-            sort($this->aggrbl, SORT_NUMERIC);
+            natsort($this->aggrbl);
             array_unique($this->aggrbl);
         }
 
@@ -280,7 +280,7 @@ class Loader
             $this->voipbl['data'] = array_filter($this->voipbl['data'], [$this->validator, 'isNotPrivateIP']);
         }
 
-        sort($this->voipbl['data'], SORT_NUMERIC);
+        natsort($this->voipbl['data']);
         array_unique($this->voipbl['data']);
 
         $this->voipbl['updated'] = time();
@@ -329,7 +329,7 @@ class Loader
                 $this->localbl['data'] = array_filter($this->localbl['data'], [$this->validator, 'isNotPrivateIP']);
             }
 
-            sort($this->localbl['data'], SORT_NUMERIC);
+            natsort($this->localbl['data']);
             array_unique($this->localbl['data']);
         }
 
