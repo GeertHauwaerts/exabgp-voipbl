@@ -20,7 +20,7 @@
   },
   "require-dev": {
     "cvuorinen/phpdoc-markdown-public": ">=0.2",
-    "jms/serializer": "^1.7",
+    "jms/serializer": "^3.1",
     "squizlabs/php_codesniffer": ">=3.0",
     "phpdocumentor/phpdocumentor": ">=2.9",
     "phpunit/phpunit": ">=8.0"
