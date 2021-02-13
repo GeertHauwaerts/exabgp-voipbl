@@ -1,0 +1,23 @@
+{
+  "name": "Ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.shell.osx": "/bin/zsh"
+  },
+  "extensions": [
+	"editorconfig.editorconfig",
+	"ms-azuretools.vscode-docker",
+	"coenraads.bracket-pair-colorizer-2",
+	"yzhang.markdown-all-in-one",
+	"tyriar.sort-lines",
+	"mikestead.dotenv",
+	"felixfbecker.php-intellisense",
+	"ikappas.phpcs"
+],
+  "remoteUser": "vscode"
+}

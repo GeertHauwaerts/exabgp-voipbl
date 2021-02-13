@@ -84,7 +84,7 @@ $ unbuffer php voipbl.php | wc -l
 ## Collaboration
 
 The GitHub repository is used to keep track of all the bugs and feature
-requests; I prefer to work uniquely via GitHib and Twitter.
+requests; I prefer to work exclusively via GitHib and Twitter.
 
 If you have a patch to contribute:
 
@@ -95,3 +95,13 @@ If you have a patch to contribute:
 
 Shout to [@GeertHauwaerts](https://twitter.com/GeertHauwaerts) on Twitter at
 any time :)
+
+## Donations
+
+If you like this project and you want to support the development, please consider to [donate](https://commerce.coinbase.com/checkout/45c6916d-19ae-40c9-8ef7-7fb7ad30f8e2); all donations are greatly appreciated.
+
+* **[Coinbase Commerce](https://commerce.coinbase.com/checkout/45c6916d-19ae-40c9-8ef7-7fb7ad30f8e2)**: *BTC, BCH, DAI, ETH, LTC, USDC*
+* **BTC**: *bc1q654z85zv6sujsjqk750sf4j4eahcckdtq0cqrp*
+* **ETH**: *0x4d38b4EB5b0726Dc6bd5770F69348e7472954b41*
+* **LTC**: *MBEaP6e4zwro6oNP54yjfC29fVqZ881wdF*
+* **DOGE**: *D8LypNzP6GayEBWUKCw3KVc7gwbGBaXynT*
